@@ -83,11 +83,10 @@ def cityreader(cities=[]):
         # print(dict_list)
 
     for i in dict_list:
-        new_city = City(i['name'],i['lat'],i['lon'])
+        new_city = City(i['name'],float(i['lat']),float(i['lon']))
         cities.append(new_city)
         # print(new_city)
 
-    # print(cities)
     return cities
 
 cityreader(cities)
