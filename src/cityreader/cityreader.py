@@ -87,14 +87,14 @@ def cityreader(cities=[]):
         cities.append(new_city)
         # print(new_city)
 
-    print(cities)
+    # print(cities)
     return cities
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-# for c in cities:
-    # print(c)
+for c in cities:
+    print(c)
 
 # STRETCH GOAL!
 #
