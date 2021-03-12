@@ -1,3 +1,6 @@
+import csv
+import pandas as pd
+
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 
@@ -14,21 +17,84 @@
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
+
+class City():
+    def __init__(self, name, lat, lon):
+        self.name = name
+        self.lat = lat
+        self.lon = lon
+    # def __str__(self):
+        # return f"{self.name}, {self.lat}, {self.lon}"
+    def __repr__(self):
+        return f"{self.name}, {self.lat}, {self.lon}"
+
+
+
 cities = []
 
 def cityreader(cities=[]):
-  # TODO Implement the functionality to read from the 'cities.csv' file
-  # Ensure that the lat and lon valuse are all floats
-  # For each city record, create a new City instance and add it to the 
-  # `cities` list
+    # TODO Implement the functionality to read from the 'cities.csv' file
+    # Ensure that the lat and lon valuse are all floats
+    # For each city record, create a new City instance and add it to the 
+    # `cities` list
+
+# -------------
+    # fields = []
+    # rows = []
+
+    # with open('cities.csv', 'r') as file:
+    #     reader = csv.reader(file)
+
+    #     fields = next(reader)
+    #     for row in reader:
+    #         rows.append(row)
     
+    # print(f"Field names are {[field for field in fields]}")
+
+    # print([f"{row}" for row in rows[:3]])
+# -------------
+    # fields = []
+    # with open('cities.csv', 'r') as in_file:
+    #     reader = csv.reader(in_file)
+    #     fields = next(reader)
+    #     cities_dict = {rows[0] for rows in reader}
+
+    #     print(cities_dict)
+# -------------
+
+    # df = pd.DataFrame([[],[]])
+    df = pd.read_csv('cities.csv')
+
+    dict_list = []
+
+    # #iterate over each row in df
+    for i in df.index:
+
+        #create empty dictionary for each row
+        dict_row = {}
+
+        # populate 
+        dict_row['name'] = df.at[i, 'city']
+        dict_row['lat'] = df.at[i, 'lat']
+        dict_row['lon'] = df.at[i, 'lng']
+
+        # append
+        dict_list.append(dict_row)
+        # print(dict_list)
+
+    for i in dict_list:
+        new_city = City(i['name'],i['lat'],i['lon'])
+        cities.append(new_city)
+        # print(new_city)
+
+    print(cities)
     return cities
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(c)
+# for c in cities:
+    # print(c)
 
 # STRETCH GOAL!
 #
@@ -61,11 +127,11 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
-def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-  # within will hold the cities that fall within the specified region
-  within = []
-  
-  # Go through each city and check to see if it falls within 
-  # the specified coordinates.
+# def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
+#     # within will hold the cities that fall within the specified region
+#     within = []
+    
+#     # Go through each city and check to see if it falls within 
+#     # the specified coordinates.
 
-  return within
+#     return within
